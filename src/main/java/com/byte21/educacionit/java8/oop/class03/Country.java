@@ -79,6 +79,32 @@ public class Country {
     
     // Public instance method declarations extended of java.lang.Object
     /* (non-Javadoc)
+     * @see java.lang.Object#hashCode ()
+     */
+    @Override
+    public int hashCode () {
+        
+        // Return the value.
+        return this.name.hashCode ();
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals (Object obj)
+     */
+    @Override
+    public boolean equals (Object obj) {
+        
+        // Check values.
+        if (!(obj instanceof Student)) {
+            return false;
+        }
+    
+        // Return the value.
+        Country that = (Country) obj;
+        return this.name.equalsIgnoreCase (that.name);
+    }
+    
+    /* (non-Javadoc)
      * @see java.lang.Object#toString ()
      */
     @Override

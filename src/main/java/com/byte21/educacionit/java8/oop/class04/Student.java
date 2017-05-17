@@ -1,10 +1,10 @@
 /*
- * @(#Student.java 05/15/2017
+ * @(#Student.java 05/17/2017
  * Copyright 2017 Byte21/Educationit, Inc. All rights reserved.
  * Byte21/Educacionit/CONFIDENTIAL
  * */
 
-package com.byte21.educacionit.java8.oop.class03;
+package com.byte21.educacionit.java8.oop.class04;
 
 
 // Packages and classes to import from jdk 1.8
@@ -14,29 +14,24 @@ import java.util.Map;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
+// Packages and classes to import of this project.
+import com.byte21.educacionit.java8.oop.class03.Address;
+import com.byte21.educacionit.java8.oop.class03.Phone;
+
 
 /**
  * 
- *  <p>The class <code>com.byte21.educacionit.java8.oop.class03.Student</code> 
+ *  <p>The class <code>com.byte21.educacionit.java8.oop.class04.Student</code> 
  *     is a POJOs class for management student information.
  *  
  *  @author  Raul Geomar Pena (raul.pena@gmail.com)
  *  @version 1.0.0
  *  @since   jdk 1.8
- *  @since   05/15/2017
+ *  @since   05/17/2017
  * */
-public class Student {
+public class Student extends Person {
  
     // Private instance fields declarations.
-    // DNI
-    private int dni = 0;
-    
-    // Student name.
-    private String name = "";
-    
-    // Student last name.
-    private String lastName = "";    
-    
     // Phones.
     private Map<String, Phone>      phones = null;
     
@@ -74,12 +69,9 @@ public class Student {
                     Map<String, Phone> phones, Map<String, Address> addresses) {
         
         // Call to super class.
-        super ();
+        super (name, lastName, dni);
         
         // Set the internal values.
-        this.name = name;
-        this.lastName    = lastName;
-        this.dni = dni;
         this.phones    = phones;
         this.addresses = addresses;
         
@@ -89,78 +81,6 @@ public class Student {
     
     
     // Public instance methods declarations.
-    /**
-     * 
-     *  <p>Method that return the name.
-     * 
-     * @return The name.
-     */
-    public String getName () {
-        
-        // Return the value.
-        return this.name;
-    }
-
-    /**
-     * 
-     *  <p>Method that set the name
-     * 
-     * @param name Name.
-     */
-    public void setName (String name) {
-        
-        // Set the value.
-        this.name = name;
-    }
-    
-    /**
-     * 
-     *  <p>Method that return the last name.
-     * 
-     * @return The last name.
-     */
-    public String getLastName () {
-        
-        // Return the value.
-        return this.lastName;
-    }
-
-    /**
-     * 
-     *  <p>Method that set the last name.
-     * 
-     * @param lastName last name.
-     */
-    public void setLastName (String lastName) {
-        
-        // Set the value.
-        this.lastName = lastName;
-    }
-    
-    /**
-     * 
-     *  <p>Method that return the dni.
-     * 
-     * @return The dni.
-     */
-    public int getDni () {
-        
-        // Return the value.
-        return this.dni;
-    }
-
-    /**
-     * 
-     *  <p>Method that set the dni.
-     * 
-     * @param dni dni.
-     */
-    public void setDni (int dni) {
-        
-        // Set the value.
-        this.dni = dni;
-    }
-    
     /**
      * 
      *  <p>Method that set the phones.
@@ -219,9 +139,9 @@ public class Student {
         
         // Return the value.
         return new HashCodeBuilder ().
-                    append (this.dni).
-                    append (this.name).
-                    append (this.lastName).
+                    append (this.getDni ()).
+                    append (this.getName ()).
+                    append (this.getLastName ()).
                     toHashCode ();
     }
     
@@ -239,9 +159,9 @@ public class Student {
         // Return the value.
         Student that = (Student) obj;
         return new EqualsBuilder ().
-                    append (this.dni, that.dni).
-                    append (this.name, that.name).
-                    append (this.lastName, that.lastName).
+                    append (this.getDni (), that.getDni ()).
+                    append (this.getName (), that.getName ()).
+                    append (this.getLastName (), that.getLastName ()).
                     isEquals ();
     }
     
@@ -252,7 +172,7 @@ public class Student {
     public String toString () {
 		
         // Return the value
-	return this.name.concat (" ").concat (this.lastName);
+	return this.getName ().concat (" ").concat (this.getLastName ());
     }
     
     
