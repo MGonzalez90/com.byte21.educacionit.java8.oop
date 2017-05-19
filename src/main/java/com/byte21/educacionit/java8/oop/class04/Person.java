@@ -7,6 +7,10 @@
 package com.byte21.educacionit.java8.oop.class04;
 
 
+// Packages and classes to import of jdk 1.8
+import java.time.LocalDate;
+
+
 /**
  * 
  *  <p>The class <code>com.byte21.educacionit.java8.oop.class04.Person</code> 
@@ -29,6 +33,9 @@ public abstract class Person {
     // Student last name.
     private String lastName = "";   
     
+    // Birthdate.
+    private LocalDate birthDate = null;
+    
     
     // Public constructor declarations.
     /**
@@ -38,7 +45,8 @@ public abstract class Person {
     public Person() {
         
         // Call to constructor.
-        this ("", "", 0);
+        this ("", "", 0, 
+              null);
     }
     
     /**
@@ -48,8 +56,10 @@ public abstract class Person {
      * @param name Student name.
      * @param lastName Student last name.
      * @param dni Student dni.
+     * @param birthDate Birth date.
      */
-    public Person (String name, String lastName, int dni) {
+    public Person (String name, String lastName, int dni,
+                   LocalDate birthDate) {
         
         // Call to super class.
         super ();
@@ -57,7 +67,25 @@ public abstract class Person {
         // Set the internal values.
         this.name = name;
         this.lastName = lastName;
-        this.dni = dni;
+        this.dni      = dni;
+        this.birthDate = birthDate;
+    }
+    
+    
+    // Private instance method declarations.
+    /*
+     *  <p>Method that calculate the age.
+     *
+     *  @return The age.
+     */
+    private int calculateAge () {
+        
+        // Calcuala teh age.
+        if (this.birthDate != null) {
+            return LocalDate.now ().getYear () - this.birthDate.getYear ();
+        } else {
+            return 0;
+        }
     }
     
     
@@ -132,5 +160,41 @@ public abstract class Person {
         
         // Set the value.
         this.dni = dni;
+    }
+
+    /**
+     * 
+     *  <p>Method that return the birth date.
+     * 
+     * @return Birth date.
+     */
+    public LocalDate getBirthDate () {
+        
+        // Return the value.
+        return this.birthDate;
+    }
+
+    /**
+     * 
+     *  <p>Method that set the birth date.
+     * 
+     * @param birthDate Birth date.
+     */
+    public void setBirthDate (LocalDate birthDate) {
+        
+        // Set the value.
+        this.birthDate = birthDate;
+    }
+    
+    /**
+     * 
+     *  <p>Method that return the age.
+     * 
+     * @return Age.
+     */
+    public int getAge () {
+        
+        // Return the value.
+        return this.calculateAge ();
     }
 }

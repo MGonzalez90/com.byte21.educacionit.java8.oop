@@ -7,6 +7,9 @@
 package com.byte21.educacionit.java8.oop.test;
 
 
+// Packages and classes to import of jdk 1.8
+import java.time.LocalDate;
+
 // Packages and classes to import of apache log4j.
 import org.apache.log4j.Logger;
 
@@ -14,8 +17,10 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 // Packages and classes to import of the project.
+import com.byte21.educacionit.java8.oop.class03.Province;
 import com.byte21.educacionit.java8.oop.class04.Student;
 import com.byte21.educacionit.java8.oop.class05.MainApp;
 import com.byte21.educacionit.java8.oop.class05.AbstractELearning;
@@ -67,6 +72,8 @@ public class ELearningAppTest {
         Student s = new Student ();
         s.setName ("Raul");
         s.setLastName ("Peña");
+        s.setBirthDate (LocalDate.of (1977, 7, 9));
+        s.setProvince (new Province ("CABA", null));
         logger.debug ("New student " + s + " created.");
         
         
@@ -84,8 +91,47 @@ public class ELearningAppTest {
         
         // Check the test.
         logger.debug ("Checking test.");
-        assertTrue ("Student id is invalid...", s.getId () > 0);
         assertNotNull ("Confirmation number is invalid...", confirmation);
+        assertTrue ("Student id is invalid...", s.getId () > 0);
+        logger.info ("Ending test...");
+    }
+    
+    /**
+     * 
+     *  <p>Method that test a register successful. (App Onsite)
+     * 
+     *  @see {@link org.junit.Test}
+     */
+    @Test
+    public void checkARegisterOnsiteWithFailure () {
+        
+        // Build a student.
+        logger.info ("Initializing test...");
+        logger.info ("Creating new student...");
+        Student s = new Student ();
+        s.setName ("Homer");
+        s.setLastName ("Simpson");
+        s.setBirthDate (LocalDate.of (1950, 7, 9));
+        s.setProvince (new Province ("Springfield", null));
+        logger.debug ("New student " + s + " created.");
+        
+        
+        // Get a school.
+        logger.info ("Getting new app school...");
+        AbstractELearning app = MainApp.buildOnsiteApp ();
+        logger.debug ("School " + app + " ready.");
+        
+        
+        // Register a new student.
+        logger.info ("Registering " + s + " in " + app);
+        String confirmation = app.register (s);
+        logger.debug (s + " in " + app + " registered, him confirmation number is ==> " + confirmation + " and student id " + s.getId ());
+        
+        
+        // Check the test.
+        logger.debug ("Checking test.");
+        assertNull ("Confirmation number is invalid...", confirmation);
+        assertTrue ("Student id is invalid...", s.getId () == 0);
         logger.info ("Ending test...");
     }
 }

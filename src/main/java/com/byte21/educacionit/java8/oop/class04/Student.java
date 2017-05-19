@@ -9,6 +9,7 @@ package com.byte21.educacionit.java8.oop.class04;
 
 // Packages and classes to import from jdk 1.8
 import java.util.Map;
+import java.time.LocalDate;
 
 // Packages and classes to import apache commons.
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 // Packages and classes to import of this project.
 import com.byte21.educacionit.java8.oop.class03.Address;
 import com.byte21.educacionit.java8.oop.class03.Phone;
+import com.byte21.educacionit.java8.oop.class03.Province;
 
 
 /**
@@ -41,6 +43,9 @@ public class Student extends Person {
     // Addresses.
     private Map<String, Address> addresses = null;
     
+    // Province.
+    private Province province = null;
+    
     
     // Private class fields declarations.
     private static int STUDENTS = 0;
@@ -55,7 +60,8 @@ public class Student extends Person {
         
         // Call to constructor.
         this ("", "", 0, 
-              null, null);
+              null, null, null,
+              null);
     }
     
     /**
@@ -65,18 +71,23 @@ public class Student extends Person {
      * @param name Student name.
      * @param lastName Student last name.
      * @param dni Student dni.
+     * @param birthDate Birth date.
+     * @param province Province.
      * @param phones Student phones numbers.
      * @param addresses Student addresses.
      */
     public Student (String name, String lastName, int dni,
-                    Map<String, Phone> phones, Map<String, Address> addresses) {
+                    LocalDate birthDate, Province province, Map<String, Phone> phones, 
+                    Map<String, Address> addresses) {
         
         // Call to super class.
-        super (name, lastName, dni);
+        super (name, lastName, dni, 
+               birthDate);
         
         // Set the internal values.
         this.phones    = phones;
         this.addresses = addresses;
+        this.province  = province;
         
         // Add new student.
         STUDENTS++;
@@ -106,6 +117,30 @@ public class Student extends Person {
         
         // Set the value.
         this.id = id;
+    }
+    
+    /**
+     * 
+     *  <p>Method that return the province.
+     * 
+     *  @return province province.
+     */
+    public Province getProvince () {
+        
+        // Return the value.
+        return this.province;
+    }
+    
+    /**
+     * 
+     *  <p>Method that set the province.
+     * 
+     *  @param province province.
+     */
+    public void setProvince (Province province) {
+        
+        // Set the value.
+        this.province = province;
     }
     
     /**

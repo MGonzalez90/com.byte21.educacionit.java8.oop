@@ -59,6 +59,30 @@ public abstract class AbstractELearning {
     }
     
     
+    // Protected instance methods declarations.
+    /*
+     * <p>Method that check if the age is correct.
+     *
+     * @return Indicate if the student can or not check in inside the course. 
+     */
+    protected boolean isAgeCorrect (Student student) {
+    
+        // Check if the age is correct.
+        return student.getAge () > 18;
+    }
+    
+    /*
+     * <p>Method that check if the province is correct.
+     *
+     * @return Indicate if the student can or not check in inside the course. 
+     */
+    protected boolean isProvinceCorrect (Student student) {
+    
+        // Check if the age is correct.
+        return student.getProvince ().getName ().equalsIgnoreCase ("CABA");
+    }
+    
+    
     // Public abstract methods declarations.
     /**
      * 
