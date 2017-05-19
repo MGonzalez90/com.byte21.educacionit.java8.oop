@@ -32,6 +32,9 @@ import com.byte21.educacionit.java8.oop.class03.Phone;
 public class Student extends Person {
  
     // Private instance fields declarations.
+    // Id student.
+    private int id = 0;
+    
     // Phones.
     private Map<String, Phone>      phones = null;
     
@@ -81,6 +84,30 @@ public class Student extends Person {
     
     
     // Public instance methods declarations.
+    /**
+     * 
+     *  <p>Method that return the student id.
+     * 
+     *  @return Id student.
+     */
+    public int getId () {
+        
+        // Return the value.
+        return this.id;
+    }
+    
+    /**
+     * 
+     *  <p>Method that set the student id.
+     * 
+     *  @param id Id student.
+     */
+    public void setId (int id) {
+        
+        // Set the value.
+        this.id = id;
+    }
+    
     /**
      * 
      *  <p>Method that set the phones.
