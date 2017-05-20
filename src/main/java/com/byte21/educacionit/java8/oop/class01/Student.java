@@ -33,6 +33,8 @@ public class Student {
     // Student last name.
     public String lastName = "";    
     
+    public int age = 0;
+    
     // Phones.
     public Map<String, Phone>      phones = null;
     

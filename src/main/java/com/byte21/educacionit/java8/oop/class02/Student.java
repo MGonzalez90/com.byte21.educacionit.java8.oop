@@ -33,6 +33,8 @@ public class Student {
     // Student last name.
     private String lastName = "";    
     
+    private int age = 0;
+    
     // Phones.
     private Map<String, Phone>      phones = null;
     
@@ -147,6 +149,18 @@ public class Student {
         
         // Set the value.
         this.dni = dni;
+    }
+    
+    public int getAge () {
+        
+        return age;
+    }
+    
+    public void setAge (int a) {
+        
+        if (a >= 0 && a <= 100) {
+            age = a;
+        }
     }
     
     /**
